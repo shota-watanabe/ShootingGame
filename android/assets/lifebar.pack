@@ -1,0 +1,12 @@
+lifebar.png
+size: 680, 69
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lifebar
+  rotate: false
+  xy: 1, 1
+  size: 678, 67
+  orig: 678, 67
+  offset: 0, 0
+  index: -1

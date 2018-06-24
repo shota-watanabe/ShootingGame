@@ -5,14 +5,17 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ShootingGame extends Game {
-    // publicにして外からアクセスできるようにする
     public SpriteBatch batch;
+    public jp.techacademy.watanabe.shouta.shootinggame.ActivityRequestHandler mRequestHandler;
+
+    public ShootingGame(jp.techacademy.watanabe.shouta.shootinggame.ActivityRequestHandler requestHandler) {
+        super();
+        mRequestHandler = requestHandler;
+    }
 
     @Override
-    public void create () {
+    public void create() {
         batch = new SpriteBatch();
-
-        // TitleScreenを表示する
         setScreen(new TitleScreen(this));
     }
 }

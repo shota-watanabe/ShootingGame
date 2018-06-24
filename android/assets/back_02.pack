@@ -1,0 +1,12 @@
+back_02.png
+size: 578, 1026
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_02
+  rotate: false
+  xy: 1, 1
+  size: 576, 1024
+  orig: 576, 1024
+  offset: 0, 0
+  index: 2
