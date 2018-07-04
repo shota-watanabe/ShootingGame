@@ -50,7 +50,7 @@ public class GameOverScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        gameover.play(1.5f);
+        gameover.play(5f);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

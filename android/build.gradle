@@ -1,6 +1,9 @@
 android {
     buildToolsVersion "27.0.3"
     compileSdkVersion 27
+     lintOptions {
+        disable 'ResourceType'
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -26,7 +29,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
         }
     }
 }
