@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -118,7 +119,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
 
     public GameScreen(ShootingGame game) {
         mGame = game;
-        stage = new Stage();
+        stage = new Stage(new FitViewport(768,1200));
 
         assets = new AssetManager();
         assets.load("back_02.pack", TextureAtlas.class);
@@ -160,12 +161,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
                 576, 1024, new Vector2(0, 100));
 
         //プレイヤーのHPを表示
-        healthBar = new HealthBar(200, 30);
+        healthBar = new HealthBar(200,30);
         healthBar.setPosition(10, 15);
 
         //スペシャルゲージの表示
         specialBar = new SpecialBar(200, 30);
-        specialBar.setRotation(270);
         specialBar.setPosition(10, 50);
 
         if (mGame.mRequestHandler != null) {
@@ -275,6 +275,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
     @Override
     public void resize(int width, int height) {
         mViewPort.update(width, height);
+        mGuiViewPort.update(width,height);
     }
 
     private void createStage() {
@@ -362,6 +363,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
     }
 
     private void updatePlaying(float delta, final GameSprite player) {
+
+         Gdx.app.log("Gdx.input.getY", String.valueOf(Gdx.input.getY()));
+
         bgm.setLooping(true);
         bgm.setVolume(1.0f);
         bgm.play();
@@ -411,11 +415,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
                         )
                 )
         ));
-        // 不規則な間隔(0.7秒〜1.5秒)でビームを撃ち続ける
+        // 不規則な間隔(1.0秒〜1.5秒)でビームを撃ち続ける
         enemy.addAction(
                 forever(
                         sequence(
-                                delay(MathUtils.random(70, 150) / 100.f),
+                                delay(MathUtils.random(100, 150) / 100.f),
                                 run(new Runnable() {
                                     @Override
                                     public void run() {
@@ -527,10 +531,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
                 )
 
         ));
-        // 不規則な間隔(0.7秒〜1.5秒)でビームを撃ち続ける
+        // 不規則な間隔(1.0秒〜1.5秒)でビームを撃ち続ける
         boss.addAction(forever(
                 sequence(
-                        delay(MathUtils.random(70, 150) / 100.f),
+                        delay(MathUtils.random(100, 150) / 100.f),
                         run(new Runnable() {
                             @Override
                             public void run() {
@@ -616,6 +620,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
                                 healthBar.setValue(healthBar.getValue() - 0.25f);
                                 spriteB.setVisible(false);
                                 explodeEnemy(spriteB);
+                                explosion.play();
                                 if (healthBar.getValue() == 0) {
                                     explosion.play();
                                     explodePlayer(spriteA);
@@ -846,8 +851,6 @@ public class GameScreen extends ScreenAdapter implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return false;
     }
-
-
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
