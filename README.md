@@ -1,5 +1,5 @@
 # シューティングゲーム  
 LibGDXを使った、シンプルな縦スクロールシューティングゲームです。  
-![Alt Text](https://imgur.com/tAag7kP)  
+![Imgur](https://i.imgur.com/tAag7kP.png)
 # Google Play
 <https://play.google.com/store/apps/details?id=jp.techacademy.watanabe.shouta.shootinggame>
